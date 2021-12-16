@@ -8,5 +8,5 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, `/public/index.html`))
 })
 
-const port = process.env.PORT 
-app.listen(4545, () => console.log('take us to warp '))
+const port = process.env.PORT || 4545 
+app.listen(port, () => console.log('take us to warp '))
