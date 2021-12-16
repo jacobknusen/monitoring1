@@ -12,8 +12,9 @@ const rollbar = new Rollbar({
 let students = []
 
 const app = express()
+//app.use(express.json)
 
-app.use(rollbar.errorHandler)
+
 
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, `/public/index.html`))
@@ -22,7 +23,7 @@ app.get('/', (req, res) => {
 app.post(`/api/student`, (req, res)=> {
     let {name} = req.body
     name = name.trim()
-    
+
     students.push(name)
 
     rollbar.log('student added successfully', {author: 'jake'})
@@ -33,3 +34,5 @@ app.post(`/api/student`, (req, res)=> {
 
 const port = process.env.PORT || 4545 
 app.listen(port, () => console.log('take us to warp '))
+
+app.use(rollbar.errorHandler)
