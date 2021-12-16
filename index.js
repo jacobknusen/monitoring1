@@ -12,7 +12,7 @@ const rollbar = new Rollbar({
 let students = []
 
 const app = express()
-//app.use(express.json)
+app.use(express.json())
 
 
 
@@ -33,6 +33,6 @@ app.post(`/api/student`, (req, res)=> {
 
 
 const port = process.env.PORT || 4545 
+app.use(rollbar.errorHandler())
 app.listen(port, () => console.log('take us to warp '))
 
-app.use(rollbar.errorHandler)
